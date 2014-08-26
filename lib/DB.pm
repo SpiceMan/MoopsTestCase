@@ -1,10 +1,11 @@
-use Moops;
+use utf8;
+package DB;
 
-class DB extends DBIx::Class::Schema using Moose {
-    use MooseX::MarkAsMethods autoclean => 1;
+use strict;
+use warnings;
 
-    __PACKAGE__->load_namespaces;
-}
+use base 'DBIx::Class::Schema';
+
+__PACKAGE__->load_namespaces;
 
 1;
-

@@ -8,7 +8,7 @@ use Test::More;
 
 
 ok( my $schema = DB->connect({ dsn => "dbi:SQLite:dbname=db.db" }), "connected" );
-ok( $schema->deploy, "deployed");
+$schema->deploy;  # found out that deploy()'s return value is meaningless
 ok( -f "db.db" && !-z _ , "db looks ok-ish");
 
 unlink "db.db";

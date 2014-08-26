@@ -3,7 +3,6 @@ use Moops;
 class DB::Result::Foo extends DBIx::Class::Core using Moose {
     use MooseX::NonMoose;
     use MooseX::MarkAsMethods autoclean => 1;
-    use DateTime;
     use utf8;
 
     __PACKAGE__->table("foo");
@@ -15,17 +14,8 @@ class DB::Result::Foo extends DBIx::Class::Core using Moose {
 
     __PACKAGE__->set_primary_key("id");
 
-    __PACKAGE__->load_components(qw/TimeStamp InflateColumn::DateTime/); 
-
     fun to_timestamp( DateTime $dt ) {
         $_[0]->epoch();
-    }
-
-    fun from_timestamp( $ts ) {
-        return $ts if ref($ts) eq "DateTime";
-        return undef if $ts !~ /^\d+$/;
-
-        DateTime->from_epoch( epoch => $_[0], time_zone => timezone(), locale => locale() );
     }
 
 }
